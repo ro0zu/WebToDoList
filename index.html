@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Focus App</title>
+    <link rel="shortcut icon" href="media/favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -11,7 +12,7 @@
         <h1>Focus App</h1>
         <div class="botones-menu">
             <button class="boton-menu" id="btn-add-task"><i class="bi bi-plus-lg"></i> Add Task</button>
-            <button class="boton-menu" id="btn-reproductor"><i class="bi bi-music-note-beamed"></i></button>
+            <button class="boton-menu" id="btn-reproductor"><i class="bi bi-disc" id="disco-giratorio"></i></button>
             <button class="boton-menu" id="btn-dark-mode"><i id="iconDarkMode" class="bi bi-moon-stars-fill"></i></button>
             <!-- <button class="boton-menu" id="btn-next-song"><i class="bi bi-skip-forward-fill"></i></button> -->
         </div>
@@ -39,11 +40,11 @@
             <form action="">
                 <div class="elemento-formulario">
                     <label for="taskName">Nombre tarea:</label>
-                    <input type="text" id="taskName" name="taskName" placeholder="Learn CSS, Play piano..." required>
+                    <input type="text" id="taskName" name="taskName" maxlength="25" placeholder="Learn CSS, Play piano..." required>
                 </div>
                 <div class="elemento-formulario">
                     <label for="taskTime">Tiempo:</label>
-                    <input type="number" id="taskTime" name="taskTime" min="1" max="60" placeholder="Time in minutes..">
+                    <input type="number" id="taskTime" name="taskTime" min="1" max="60" placeholder="Time in minutes.." required>
                 </div>
                 <div class="elemento-formulario">
                     <button type="submit">Guardar tarea</button>
@@ -84,7 +85,8 @@
         </div>
     </div>
 
-    <audio id="audio"></audio>
+    <audio id="audio"></audio> <!-- Audio para la musica -->
+    <audio id="alarma" src="media/alarmaFinTarea.mp3"></audio> <!-- Audio para la alarma finalizar tarea -->
 
     <footer>
         <p><i class="bi bi-c-circle"></i> Hecho con 🩷 Jose Romero Molina</p>

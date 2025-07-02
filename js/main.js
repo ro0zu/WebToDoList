@@ -85,6 +85,10 @@ window.addEventListener('DOMContentLoaded', () => {
           clearInterval(intervaloId);
           timerEl.textContent = "00:00";
 
+          // Pausamos la canción y hacemos que suene la alarma
+          pausarCancion();
+          alarmaAudio.play();
+
           mostrarConfirmacion(
             tarea,
             nuevaTarea,
@@ -100,6 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
               tiempoRestante = 5 * 60;
               timerEl.textContent = formatearTiempo(tiempoRestante);
               intervaloId = setInterval(actualizarTemporizador, 1000);
+              reproducirCancion();
             }
           );
         }
@@ -154,7 +159,7 @@ function formatearTiempo(segundos) {
     // Ocultar formulario una vez creada tarea
     formulario.classList.remove('visible');
 
-})
+});
 
 // Comprobar si las tareas están vacias para añadir un parrafo o no
 function actualizarEstadoTareas() {
@@ -179,14 +184,18 @@ const modalConfirmacion = document.getElementById('modalConfirmacion');
 const mensajeConfirmacion = document.getElementById('mensajeConfirmacion');
 const btnFinalizar = document.getElementById('btnFinalizar');
 const btnAnadir5 = document.getElementById('btnAnadir5');
+const alarmaAudio = document.getElementById('alarma');
 
 let tareaPendiente = null;
 let tareaElemento = null;
 let tiempoExtraCallback = null;
 let eliminarCallback = null;
 
-// Mostrar modal con datos
+// Mostrar ventana de confirmacion
 function mostrarConfirmacion(tarea, domTarea, onEliminar, onAnadir5) {
+
+
+  // Parametros de la función, los dos últimos 
   tareaPendiente = tarea;
   tareaElemento = domTarea;
   eliminarCallback = onEliminar;
@@ -216,10 +225,11 @@ function cerrarConfirmacion() {
 }
 
 
-/********* Funcionalidad Reproductor ************/
+/********* Funcionalidad Reproductor / API JAMENDO ************/
 
 // Mostrar y Ocultar Rerproductor
 const btnReproductor = document.getElementById('btn-reproductor');
+const iconBtnReproductor = document.getElementById('disco-giratorio')
 const reproductor = document.getElementById('reproductorContenedor');
 const btnCloseReproductor = document.getElementById('cerrarReproductor');
 
@@ -280,11 +290,13 @@ function reproducirCancion() {
   audio.play();
   enReproduccion = true;
   btnPlay.innerHTML = '<i class="bi bi-pause-fill"></i>';
+  iconBtnReproductor.classList.toggle('girar');
 }
 function pausarCancion() {
   audio.pause();
   enReproduccion = false;
   btnPlay.innerHTML = '<i class="bi bi-play-fill"></i>';
+  iconBtnReproductor.classList.remove('girar');
 }
 
 // Botones de gestión del reproductor

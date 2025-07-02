@@ -152,6 +152,20 @@ main{
     color: #a71d2a;
 }
 
+/* Clase para girar el icono de musica cuando esté activo*/
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.boton-menu i.girar {
+  animation: girar 3s linear infinite;
+}
+
 
 /* Formulario Add task*/
 .formulario-add-task {
