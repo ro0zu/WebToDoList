@@ -319,7 +319,7 @@ audio.addEventListener("timeupdate", () => {
     reproducirCancion();
   }
 });
-
+// Permitir cambiar el tramo de la canción
 progreso.addEventListener("input", () => {
   const nuevoTiempo = (progreso.value * audio.duration) / 100;
   audio.currentTime = nuevoTiempo;
