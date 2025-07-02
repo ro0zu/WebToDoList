@@ -1,0 +1,367 @@
+/* Bootstrap icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"); 
+/* Fuente de google */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kanit", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+/* Barra Superior botones + encabezado */
+h1{
+    font-family: "Kanit", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ddd;
+    padding: 1rem;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); 
+}
+.botones-menu{
+    display: flex;
+    gap: 1rem;
+}
+.boton-menu{
+    font-family: "Kanit", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    padding: .85rem 1.25rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background-color: #fff; 
+    border: none; 
+    border-radius: 4px; 
+    display: flex;
+    align-items: center; 
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.boton-menu:hover {
+    background-color: #eaeaea;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.boton-menu:active {
+    background-color: #d4d4d4;
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) inset;
+}
+
+/* Cuerpo principal */
+h2{
+    font-family: "Kanit", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 50px;
+}
+main{
+    width: 90%; 
+    max-width: 1180px;
+    margin: 2rem auto 0 auto; 
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 8px; 
+    text-align: center;
+    font-family: "Kanit", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+#no-task-p{
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+/* Responsive buttons */
+@media (max-width: 768px) {
+    .botones-menu {
+        gap: 0.25rem; 
+    }
+
+    .boton-menu {
+        padding: 0.5rem 0.75rem; 
+        font-size: 0.9rem; 
+    }
+}
+
+/* Elementos lista de tareas */
+
+.tarea{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.tarea:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.tarea p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+    flex: 1;
+}
+.timer {
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #007bff;
+}
+
+.botones-tarea{
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+.btn-pause-task{
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.btn-pause-task:hover{
+    color: #0056b3;
+}
+
+.btn-cancel-task {
+    background-color: transparent;
+    border: none;
+    color: #dc3545;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.btn-cancel-task:hover {
+    color: #a71d2a;
+}
+
+
+/* Formulario Add task*/
+.formulario-add-task {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(6px); /* Fondo difuminado */
+    background-color: rgba(0, 0, 0, 0.3); /* Sombra oscura transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+.formulario-add-task.visible {
+    opacity: 1;
+    pointer-events: auto; /* Permite que los eventos de ratón puedan usarse en el formulario*/
+}
+.formulario-contenido{
+    background-color: #d4d4d4;
+    padding: 4rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.elemento-formulario {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+/* Estilo base para inputs y labels */
+
+.elemento-formulario input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+.elemento-formulario button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.elemento-formulario button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.cerrar-formulario{
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 2rem;
+}
+
+/* Reproductor de música */
+
+.reproductor-contenedor{
+    width: 350px;
+    height: 160px;
+    background-color: #d6d6d6;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-block: 80px;
+    margin-inline: 30px;
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.reproductor-contenedor.visible {
+    opacity: 1;
+    pointer-events: auto; /* Permite que los eventos de ratón puedan usarse en el formulario ya cuando no es visible está en none*/
+}
+
+.reproductor {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.info-cancion {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.controles-reproductor {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+}
+
+.controles-reproductor button {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.barra-progreso {
+    width: 100%;
+}
+
+.barra-progreso input[type="range"] {
+    width: 100%;
+}
+
+.cerrar-reproductor {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* Footer */
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #ddd;
+    text-align: center;
+    padding: 1rem;
+    font-family: "Kanit", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+
+
+/* Estilos Modo oscuro */
+body,
+nav,
+main,
+footer,
+.boton-menu {
+    transition: background-color 1s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #292929;
+    color: #f0f0f0;
+}
+
+body.dark-mode nav {
+    background-color: #3d3d3d;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .boton-menu {
+    background-color: #555;
+    color: #f0f0f0;
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .boton-menu:hover {
+    background-color: #888;
+}
+
+body.dark-mode .boton-menu:active {
+    background-color: #555;
+}
+
+body.dark-mode main {
+    background-color: #3d3d3d;
+    transition: background-color 1s ease, color 0.3s ease;
+}
+
+body.dark-mode .tarea {
+    background-color: #292929;
+    transition: background-color 1s ease, color 0.3s ease;
+}
+
+body.dark-mode .tarea p {
+    color: #fff
+}
+
+body.dark-mode .formulario-contenido{
+    background-color: #3d3d3d;
+} 
+
+body.dark-mode .reproductor-contenedor{
+    background-color: #3d3d3d;
+    color: #ccc;
+} 
+
+body.dark-mode .reproductor-contenedor i{
+    color: #ccc;
+}
+
+body.dark-mode footer {
+    background-color: #3d3d3d;
+    color: #ccc;
+}

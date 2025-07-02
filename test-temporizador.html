@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Temporizador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #timer {
+      font-size: 48px;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Temporizador de 5 minutos</h1>
+  <div id="timer">05:00</div>
+
+  <script>
+    let minutos = 5;
+    let tiempo = minutos * 60; // convertir a segundos
+    const timerElement = document.getElementById('timer');
+
+    const formatoTiempo = (segundos) => {
+      const min = Math.floor(segundos / 60);
+      const seg = segundos % 60;
+      return `${min.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}`;
+    };
+
+    timerElement.textContent = formatoTiempo(tiempo);
+
+    const intervalo = setInterval(() => {
+      tiempo--;
+      timerElement.textContent = formatoTiempo(tiempo);
+
+      if (tiempo <= 0) {
+        clearInterval(intervalo);
+        timerElement.textContent = "¡Tiempo terminado!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
