@@ -290,7 +290,7 @@ function reproducirCancion() {
   audio.play();
   enReproduccion = true;
   btnPlay.innerHTML = '<i class="bi bi-pause-fill"></i>';
-  iconBtnReproductor.classList.toggle('girar');
+  iconBtnReproductor.classList.add('girar');
 }
 function pausarCancion() {
   audio.pause();
