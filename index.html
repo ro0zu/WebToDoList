@@ -10,8 +10,8 @@
     <nav>
         <h1>Focus App</h1>
         <div class="botones-menu">
-            <button class="boton-menu" id="btn-reproductor"><i class="bi bi-music-note-beamed"></i></button>
             <button class="boton-menu" id="btn-add-task"><i class="bi bi-plus-lg"></i> Add Task</button>
+            <button class="boton-menu" id="btn-reproductor"><i class="bi bi-music-note-beamed"></i></button>
             <button class="boton-menu" id="btn-dark-mode"><i id="iconDarkMode" class="bi bi-moon-stars-fill"></i></button>
             <!-- <button class="boton-menu" id="btn-next-song"><i class="bi bi-skip-forward-fill"></i></button> -->
         </div>
@@ -50,6 +50,16 @@
                 </div>
             </form>
             <button class="cerrar-formulario boton-menu" id="cerrarFormulario"><i class="bi bi-x-lg"></i></button>
+        </div>
+    </div>
+
+    <!-- div para confirmación de acabar tarea -->
+
+    <div id="modalConfirmacion" class="confirmacion-contenedor">
+        <h2 id="mensajeConfirmacion">¡Tiempo finalizado para: <strong>${tarea.nombre}</strong>!</h2>
+        <div class="botones-confirmacion">
+            <button id="btnFinalizar">Finalizar</button>
+            <button id="btnAnadir5">Añadir 5 min.</button>
         </div>
     </div>
 

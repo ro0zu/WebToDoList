@@ -190,7 +190,6 @@ main{
 }
 
 /* Estilo base para inputs y labels */
-
 .elemento-formulario input {
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -216,6 +215,50 @@ main{
     right: 0;
     margin: 2rem;
 }
+/* Div confirmación */
+
+.confirmacion-contenedor{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(6px); /* Fondo difuminado */
+    background-color: rgba(0, 0, 0, 0.3); /* Sombra oscura transparente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.confirmacion-contenedor.visible{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.botones-confirmacion{
+    display: flex;
+    gap: 50px;
+}
+
+.botones-confirmacion button{
+    background-color: #007bff;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.botones-confirmacion button:hover{
+    background-color: #0056b3;
+}
 
 /* Reproductor de música */
 
@@ -227,7 +270,7 @@ main{
     bottom: 0;
     right: 0;
     margin-block: 80px;
-    margin-inline: 30px;
+    margin-inline: 20px;
     border-radius: 12px;
     opacity: 0;
     pointer-events: none;
@@ -326,10 +369,6 @@ body.dark-mode .boton-menu {
     box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .boton-menu:hover {
-    background-color: #888;
-}
-
 body.dark-mode .boton-menu:active {
     background-color: #555;
 }
@@ -351,6 +390,10 @@ body.dark-mode .tarea p {
 body.dark-mode .formulario-contenido{
     background-color: #3d3d3d;
 } 
+
+body.dark-mode .confirmacion-formulario{
+    color: #fff;
+}
 
 body.dark-mode .reproductor-contenedor{
     background-color: #3d3d3d;
