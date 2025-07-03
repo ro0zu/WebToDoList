@@ -123,6 +123,11 @@ main{
     color: #007bff;
 }
 
+.nombre-tarea{
+    max-width: 30%;
+    text-align: left;
+}
+
 .botones-tarea{
     display: flex;
     flex-direction: row;
@@ -152,7 +157,7 @@ main{
     color: #a71d2a;
 }
 
-/* Clase para girar el icono de musica cuando esté activo*/
+/* Clase para girar para agregar animacion al icono de musica cuando esté activo*/
 @keyframes girar {
   0% {
     transform: rotate(0deg);

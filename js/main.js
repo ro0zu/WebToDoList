@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let intervaloId;
 
     nuevaTarea.innerHTML = `
-      <div>${tarea.nombre}</div>
+      <div class="nombre-tarea">${tarea.nombre}</div>
       <div><span class="timer">${formatearTiempo(tiempoRestante)}</span></div>
       <div class="botones-tarea">
         <button class="btn-pause-task"><i class="bi bi-pause"></i></button>
