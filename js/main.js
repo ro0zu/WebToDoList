@@ -43,6 +43,7 @@ const listaTareas = document.getElementById('lista-tareas');
 
 // Cargar tareas del localStorage al iniciar 
 let tareas = [];
+
 window.addEventListener('DOMContentLoaded', () => {
   const guardadas = localStorage.getItem('tareas');
 
@@ -85,7 +86,7 @@ window.addEventListener('DOMContentLoaded', () => {
           clearInterval(intervaloId);
           timerEl.textContent = "00:00";
 
-          // Pausamos la canción y hacemos que suene la alarma
+          // Pausamos la canción y hacemos que suene la alarma.
           pausarCancion();
           alarmaAudio.play();
 
@@ -124,6 +125,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Eliminar tarea del DOM y localStorage
     nuevaTarea.querySelector('.btn-cancel-task').addEventListener('click', () => {
+      // Limpiamos el contador
+      clearInterval(intervaloId);
+
       listaTareas.removeChild(nuevaTarea);
       tareas = tareas.filter(t => !(t.nombre === tarea.nombre && t.minutos === tarea.minutos));
       localStorage.setItem('tareas', JSON.stringify(tareas));
@@ -193,7 +197,6 @@ let eliminarCallback = null;
 
 // Mostrar ventana de confirmacion
 function mostrarConfirmacion(tarea, domTarea, onEliminar, onAnadir5) {
-
 
   // Parametros de la función, los dos últimos 
   tareaPendiente = tarea;
