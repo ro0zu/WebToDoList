@@ -251,7 +251,8 @@ const btnNext = document.querySelector(".btn-siguiente");
 const btnPrev = document.querySelector(".btn-anterior");
 const titulo = document.getElementById("titulo-cancion");
 const artista = document.getElementById("artista-cancion");
-const progreso = document.getElementById("progreso");
+const progreso = document.getElementById("progreso");const volumenControl = document.getElementById('volumen');
+
 
 // Declaro las siguentes variables
 let playlist = []; // La playlist la llenaré de los objetos después de llamar a la API. Linea 207.
@@ -340,8 +341,8 @@ progreso.addEventListener("input", () => {
   audio.currentTime = nuevoTiempo;
 });
 
-
-/***** ******/
-
-
+// Control de volumen
+volumenControl.addEventListener('input', () => {
+  audio.volume = volumenControl.value;
+});
 
