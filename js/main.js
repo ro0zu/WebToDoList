@@ -336,7 +336,7 @@ audio.addEventListener("timeupdate", () => {
   }
 });
 // Permitir cambiar el tramo de la canción
-progreso.addEventListener("input", () => {
+progreso.addEventListener('input', () => {
   const nuevoTiempo = (progreso.value * audio.duration) / 100;
   audio.currentTime = nuevoTiempo;
 });
@@ -344,5 +344,12 @@ progreso.addEventListener("input", () => {
 // Control de volumen
 volumenControl.addEventListener('input', () => {
   audio.volume = volumenControl.value;
+
+  const iconoVolumen = document.getElementById('icono-volumen');
+  if (volumenControl.value == 0){
+    iconoVolumen.innerHTML = '<i class="bi bi-volume-mute-fill"></i>'
+  } else {
+    iconoVolumen.innerHTML = '<i class="bi bi-volume-up-fill"></i>'
+  }
 });
 
