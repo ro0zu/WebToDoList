@@ -1,24 +1,27 @@
 /********* Modo oscuro ******************/ 
-const darkModeBtn = document.getElementById('btn-dark-mode');
-const iconDarkMode = document.getElementById('iconDarkMode');
+let darkModeBtn = document.getElementById('btn-dark-mode');
+let iconDarkMode = document.getElementById('iconDarkMode');
 
 // Cargar preferencia modo oscuro
 if (localStorage.getItem('darkMode') === 'enabled') {
-document.body.classList.add('dark-mode');
-iconDarkMode.classList.remove('bi-moon-stars-fill');
-iconDarkMode.classList.add('bi-sun-fill');
+  document.body.classList.add('dark-mode');
+  iconDarkMode.classList.remove('bi-moon-stars-fill');
+  iconDarkMode.classList.add('bi-sun-fill');
 }
 
 darkModeBtn.addEventListener('click', () => {
+// Añado al body la clase dark-mode o la quito con toggle
 document.body.classList.toggle('dark-mode');
 if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('darkMode', 'enabled');
-    iconDarkMode.classList.remove('bi-moon-stars-fill');
-    iconDarkMode.classList.add('bi-sun-fill');
+  // Si se deja el darmode habilitado guardo la propiedad en el localStorage
+  localStorage.setItem('darkMode', 'enabled');
+  // También cambio los iconos de bootstrap quitando y añadiendo las clases correspondientes
+  iconDarkMode.classList.remove('bi-moon-stars-fill');
+  iconDarkMode.classList.add('bi-sun-fill');
 } else {
-    localStorage.setItem('darkMode', 'disabled');
-    iconDarkMode.classList.remove('bi-sun-fill');
-    iconDarkMode.classList.add('bi-moon-stars-fill');
+  localStorage.setItem('darkMode', 'disabled');
+  iconDarkMode.classList.remove('bi-sun-fill');
+  iconDarkMode.classList.add('bi-moon-stars-fill');
 }
 });
 
@@ -56,30 +59,34 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Funcion crear y mostrar tarea.
   function crearTareaEnDOM(tarea) {
-    const nuevaTarea = document.createElement('div');
+    // Creo el elemento div y le añado la clase tarea para aplicarle los estilos
+    let nuevaTarea = document.createElement('div');
     nuevaTarea.classList.add('tarea');
 
-    let tiempoRestante = tarea.minutos * 60; // en segundos
-    let enPausa = false;
-    let intervaloId;
+    // declaro las variables que usaré en la funcion
+    let tiempoRestante = tarea.minutos * 60; // tiempo en segundos
+    let enPausa = true; // Por defecto la tarea estará en pausa.
+    let intervaloId; // Temporizador
 
     nuevaTarea.innerHTML = `
       <div class="nombre-tarea">${tarea.nombre}</div>
       <div><span class="timer">${formatearTiempo(tiempoRestante)}</span></div>
       <div class="botones-tarea">
-        <button class="btn-pause-task"><i class="bi bi-pause"></i></button>
+        <button class="btn-pause-task"><i class="bi bi-play-fill"></i></button>
         <button class="btn-cancel-task"><i class="bi bi-x-lg"></i></button>
       </div>
     `;
 
-    const timerEl = nuevaTarea.querySelector('.timer');
-    const pauseBtn = nuevaTarea.querySelector('.btn-pause-task');
+    let timerEl = nuevaTarea.querySelector('.timer');
+    let pauseBtn = nuevaTarea.querySelector('.btn-pause-task');
+    let tareaActiva = null; // Referencia a la tarea que está contando
 
     // Función para actualizar el contador
     function actualizarTemporizador() {
       if (!enPausa) {
         tiempoRestante--;
         timerEl.textContent = formatearTiempo(tiempoRestante);
+        tareaActiva = pauseBtn;
 
         // Cuando el temporizador llega a 0
         if (tiempoRestante <= 0) {
@@ -112,11 +119,12 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Iniciar intervalo
+    // // Iniciar intervalo
     intervaloId = setInterval(actualizarTemporizador, 1000);
 
-    // Pausar / Reanudar
+    // Pausar y Reanudar
     pauseBtn.addEventListener('click', () => {
+      // Pongo a reanudar la tarea especifica a la que se pulsar play.
       enPausa = !enPausa;
       pauseBtn.innerHTML = enPausa
         ? '<i class="bi bi-play-fill"></i>'
@@ -138,34 +146,35 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 // Funcion auxiliar para formatear el tiempo
 function formatearTiempo(segundos) {
-  const min = Math.floor(segundos / 60).toString().padStart(2, '0');
-  const sec = (segundos % 60).toString().padStart(2, '0');
+  let min = Math.floor(segundos / 60).toString().padStart(2, '0');
+  let sec = (segundos % 60).toString().padStart(2, '0');
   return `${min}:${sec}`;
 }
 
-// Guardar tarea una vez se envie el formulario.
-  formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
+// Accion al enviar el formulario
+formulario.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  // Guardar tarea en el localStorage una vez se envie el formulario.
+  const nombre = taskNameInput.value.trim();
+  const minutos = parseInt(taskTimeInput.value.trim());
+  
+  const nuevaTarea = { nombre, minutos };
+  tareas.push(nuevaTarea);
+  localStorage.setItem('tareas', JSON.stringify(tareas));
 
-    const nombre = taskNameInput.value.trim();
-    const minutos = parseInt(taskTimeInput.value.trim());
+  crearTareaEnDOM(nuevaTarea);
+  actualizarEstadoTareas();
+  // Limpiar inputs
+  taskNameInput.value = '';
+  taskTimeInput.value = '';
 
-    const nuevaTarea = { nombre, minutos };
-    tareas.push(nuevaTarea);
-    localStorage.setItem('tareas', JSON.stringify(tareas));
-
-    crearTareaEnDOM(nuevaTarea);
-    actualizarEstadoTareas();
-    // Limpiar inputs
-    taskNameInput.value = '';
-    taskTimeInput.value = '';
-
-    // Ocultar formulario una vez creada tarea
-    formulario.classList.remove('visible');
+  // Ocultar formulario una vez creada tarea
+  formulario.classList.remove('visible');
 
 });
 
-// Comprobar si las tareas están vacias para añadir un parrafo o no
+// Comprobar si las tareas están vacias para añadir el parrafo de no hay tareas o no
 function actualizarEstadoTareas() {
   const mensajeVacio = document.getElementById('no-task-p');
   if (tareas.length === 0) {
@@ -208,7 +217,7 @@ function mostrarConfirmacion(tarea, domTarea, onEliminar, onAnadir5) {
   modalConfirmacion.classList.add('visible');
 }
 
-// Eventos botones
+// Eventos botones al finalizar tarea.
 btnFinalizar.addEventListener('click', () => {
   if (eliminarCallback) eliminarCallback();
   cerrarConfirmacion();
@@ -352,4 +361,7 @@ volumenControl.addEventListener('input', () => {
     iconoVolumen.innerHTML = '<i class="bi bi-volume-up-fill"></i>'
   }
 });
+
+// Fuerzo el volumen de audio de la alarma ya que muchos navegadores los bloquean
+alarmaAudio.volume = 1; // volumen de 0.0 a 1.0
 

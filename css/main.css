@@ -381,7 +381,6 @@ body.dark-mode {
 
 body.dark-mode nav {
     background-color: #3d3d3d;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.6);
 }
 
 body.dark-mode .boton-menu {
@@ -405,7 +404,7 @@ body.dark-mode .tarea {
 }
 
 body.dark-mode .tarea p {
-    color: #fff
+    color: #fff;
 }
 
 body.dark-mode .formulario-contenido{
