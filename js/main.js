@@ -79,14 +79,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
     let timerEl = nuevaTarea.querySelector('.timer');
     let pauseBtn = nuevaTarea.querySelector('.btn-pause-task');
-    let tareaActiva = null; // Referencia a la tarea que está contando
 
     // Función para actualizar el contador
     function actualizarTemporizador() {
       if (!enPausa) {
         tiempoRestante--;
         timerEl.textContent = formatearTiempo(tiempoRestante);
-        tareaActiva = pauseBtn;
 
         // Cuando el temporizador llega a 0
         if (tiempoRestante <= 0) {
