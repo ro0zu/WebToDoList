@@ -16,5 +16,16 @@ Este proyecto es una aplicación web que permite crear, administrar y controlar 
 
 ---
 
-## 📂 Estructura de Archivos
+## 🛠️ Tecnologías Utilizadas
 
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Bootstrap Icons (para íconos)
+- Web Storage API (`localStorage`)
+
+---
+
+## 🔊 Nota sobre el audio
+
+Los navegadores modernos bloquean el autoplay de audio. El volumen de la alarma se fuerza a 1 al terminar la tarea, pero es recomendable que el usuario haya interactuado previamente con la página para asegurar su funcionamiento.
