@@ -116,6 +116,8 @@ window.addEventListener('DOMContentLoaded', () => {
               reproducirCancion();
             }
           );
+
+
         }
       }
     }
@@ -216,6 +218,14 @@ function mostrarConfirmacion(tarea, domTarea, onEliminar, onAnadir5) {
 
   mensajeConfirmacion.innerHTML = `¡Tiempo finalizado para: <strong>${tarea.nombre}</strong>!`;
   modalConfirmacion.classList.add('visible');
+
+  // Temporizador de 10 segundos
+
+  setTimeout(() => {
+    eliminarCallback();
+    cerrarConfirmacion();
+  }, 10000)
+
 }
 
 // Eventos botones al finalizar tarea.
