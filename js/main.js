@@ -93,6 +93,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
           // Pausamos la canción y hacemos que suene la alarma.
           pausarCancion();
+          // Fuerzo el volumen de audio de la alarma ya que muchos navegadores los bloquean
+          alarmaAudio.volume = 1; // volumen de 0.0 a 1.0
+          // Se reproduce la alarma.
           alarmaAudio.play();
 
           mostrarConfirmacion(
@@ -360,6 +363,5 @@ volumenControl.addEventListener('input', () => {
   }
 });
 
-// Fuerzo el volumen de audio de la alarma ya que muchos navegadores los bloquean
-alarmaAudio.volume = 1; // volumen de 0.0 a 1.0
+
 
