@@ -246,6 +246,7 @@ main{
     background-color: rgba(0, 0, 0, 0.3); /* Sombra oscura transparente */
     display: flex;
     flex-direction: column;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -278,6 +279,42 @@ main{
 .botones-confirmacion button:hover{
     background-color: #0056b3;
 }
+
+
+/* Animación de cuenta atrás */
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.timeout {
+  border: 6px dotted #007bff;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  animation: loading 3s infinite linear;
+}
+
+.numTimeout {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: red;
+  background-color: #ffe6e6;
+  border: 2px solid red;
+  border-radius: 8px;
+  padding: 6px 12px;
+  display: none; /* oculto por defecto */
+  text-align: center;
+  width: fit-content;
+  margin: 10px auto;
+}
+
 
 /* Reproductor de música */
 

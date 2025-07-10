@@ -35,6 +35,11 @@ const btnCloseForm = document.getElementById('cerrarFormulario');
 btnAddTask.addEventListener('click', () => {
   formulario.classList.toggle('visible');
 });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'a' || e.key === 'A') {
+    formulario.classList.add('visible');
+  }
+});
 btnCloseForm.addEventListener('click', () =>{
   formulario.classList.remove('visible');
 });
@@ -218,6 +223,7 @@ function mostrarConfirmacion(tarea, domTarea, onEliminar, onAnadir5) {
 
   mensajeConfirmacion.innerHTML = `¡Tiempo finalizado para: <strong>${tarea.nombre}</strong>!`;
   modalConfirmacion.classList.add('visible');
+  iniciarCuentaAtras(); // Funcion de cuanta atrás hasta 10.
 
   // Temporizador de 10 segundos
 
@@ -247,6 +253,25 @@ function cerrarConfirmacion() {
   eliminarCallback = null;
 }
 
+// Cuenta atrás funcion
+
+function iniciarCuentaAtras() {
+  let contador = document.getElementById('timeoutCount');
+  let tiempo = 10;
+
+  contador.textContent = `La tarea se borrará en ${tiempo}`;
+  contador.style.display = 'block'; // Aseguramos que esté visible
+
+  let intervalo = setInterval(() => {
+    tiempo--;
+    contador.textContent = `La tarea se borrará en ${tiempo}`;
+
+    if (tiempo <= 0) {
+      clearInterval(intervalo);
+      contador.style.display = 'none'; // Lo ocultamos si quieres que desaparezca al terminar
+    }
+  }, 1000);
+}
 
 /********* Funcionalidad Reproductor / API JAMENDO ************/
 
