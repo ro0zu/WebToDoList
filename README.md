@@ -13,6 +13,7 @@ Este proyecto es una aplicación web que permite crear, administrar y controlar 
 - ➕ Posibilidad de añadir 5 minutos extra a una tarea.
 - 💾 Guardado de tareas en `localStorage` para mantenerlas entre sesiones.
 - 🧼 Interfaz amigable y limpia con diseño responsivo.
+- 🎵 Reproductor música libre de copyright con API de JAMENDO. 
 
 ---
 
@@ -20,9 +21,9 @@ Este proyecto es una aplicación web que permite crear, administrar y controlar 
 
 - HTML5
 - CSS3
-- JavaScript (Vanilla)
-- Bootstrap Icons (para íconos)
-- Web Storage API (`localStorage`)
+- JavaScript
+- Bootstrap Icons
+- Web Storage (`localStorage`)
 
 ---
 
