@@ -95,9 +95,13 @@ window.addEventListener('DOMContentLoaded', () => {
         if (tiempoRestante <= 0) {
           clearInterval(intervaloId);
           timerEl.textContent = "00:00";
+          let estabaReproduciendo = false;
 
           // Pausamos la canción y hacemos que suene la alarma.
-          pausarCancion();
+          if (enReproduccion){
+            pausarCancion();
+            estabaReproduciendo = true
+          }
           // Fuerzo el volumen de audio de la alarma ya que muchos navegadores los bloquean
           alarmaAudio.volume = 1; // volumen de 0.0 a 1.0
           // Se reproduce la alarma.
@@ -112,13 +116,20 @@ window.addEventListener('DOMContentLoaded', () => {
               tareas = tareas.filter(t => !(t.nombre === tarea.nombre && t.minutos === tarea.minutos));
               localStorage.setItem('tareas', JSON.stringify(tareas));
               actualizarEstadoTareas();
+              if (estabaReproduciendo) {
+                reproducirCancion();
+                estabaReproduciendo = false;
+              }
             },
             () => {
               // Añadir 5 minutos
               tiempoRestante = 5 * 60;
               timerEl.textContent = formatearTiempo(tiempoRestante);
               intervaloId = setInterval(actualizarTemporizador, 1000);
-              reproducirCancion();
+              if (estabaReproduciendo) {
+                reproducirCancion();
+                estabaReproduciendo = false;
+              }
             }
           );
 
