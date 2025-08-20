@@ -95,7 +95,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (tiempoRestante <= 0) {
           clearInterval(intervaloId);
           timerEl.textContent = "00:00";
-          let estabaReproduciendo = false;
+          let estabaReproduciendo = false; // Variable para saber si estaba reproduciendo la canción.
 
           // Pausamos la canción y hacemos que suene la alarma.
           if (enReproduccion){
