@@ -241,8 +241,8 @@ function mostrarConfirmacion(tarea, domTarea, onEliminar, onAnadir5) {
   setTimeout(() => {
     eliminarCallback();
     cerrarConfirmacion();
+    actualizarEstadoTareas();
   }, 10000)
-
 }
 
 // Eventos botones al finalizar tarea.
