@@ -88,6 +88,7 @@ window.addEventListener('DOMContentLoaded', () => {
           // Se reproduce la alarma.
           alarmaAudio.play();
 
+          
           mostrarConfirmacion(
             tarea,
             nuevaTarea,
