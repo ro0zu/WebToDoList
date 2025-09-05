@@ -1,5 +1,5 @@
 import { initDarkMode } from './modoOscuro.js';
-import { initReproductor } from './reproductor.js';
+import { initReproductor, reproducirCancion, pausarCancion, estaReproduciendo } from './reproductor.js';
 
 // Inicializar el modo oscuro
 initDarkMode();
@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
           let estabaReproduciendo = false; // Variable para saber si estaba reproduciendo la canción.
 
           // Pausamos la canción y hacemos que suene la alarma.
-          if (enReproduccion){
+          if (estaReproduciendo()){ // Usar la función exportada
             pausarCancion();
             estabaReproduciendo = true
           }
@@ -264,8 +264,3 @@ function iniciarCuentaAtras() {
     }
   }, 1000);
 }
-
-
-
-
-
